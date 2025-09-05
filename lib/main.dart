@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learn_bloc_clean/counter_cubit.dart';
+import 'package:learn_bloc_clean/bloc/counter_bloc.dart';
+import 'package:learn_bloc_clean/cubit/counter_cubit.dart';
 
 import 'home_page.dart';
 
@@ -13,8 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_)=>CounterCubit())
+,BlocProvider(create: (_)=>CounterBloc())      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
@@ -25,4 +28,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
