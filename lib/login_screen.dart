@@ -5,7 +5,7 @@ import 'package:learn_bloc_clean/widgets/gradient_button.dart';
 import 'package:learn_bloc_clean/widgets/login_field.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
