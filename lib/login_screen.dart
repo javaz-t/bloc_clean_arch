@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learn_bloc_clean/bloc/auth_bloc.dart';
 import 'package:learn_bloc_clean/widgets/gradient_button.dart';
 import 'package:learn_bloc_clean/widgets/login_field.dart';
-import 'package:learn_bloc_clean/widgets/social_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
