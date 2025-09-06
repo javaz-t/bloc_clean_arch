@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learn_bloc_clean/app_bloc_observer.dart';
-import 'package:learn_bloc_clean/bloc/auth_bloc.dart';
-import 'package:learn_bloc_clean/pallete.dart';
-import 'home_screen.dart';
-import 'login_screen.dart';
+import 'package:learn_bloc_clean/bloc/weather_bloc.dart';
+import 'package:learn_bloc_clean/data/data_provider/weather_data_provider.dart';
+import 'package:learn_bloc_clean/data/repository/weather_repository.dart';
+import 'package:learn_bloc_clean/presentation/screen/weather_screen.dart';
 
 void main() {
-  Bloc.observer =AppBlocObserver();
   runApp(const MyApp());
 }
 
@@ -16,18 +14,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthBloc(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: Pallete.backgroundColor,
+    return RepositoryProvider(
+      create: (context) => WeatherRepository(WeatherDatProvider()),
+      child: BlocProvider(
+        create: (context) => WeatherBloc(context.read<WeatherRepository>()),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.dark(useMaterial3: true),
+          home: const WeatherScreen(),
         ),
-        home: const LoginScreen(),
-        initialRoute: '/',
-        routes: {
-           '/home': (context) => HomeScreen(),
-        },
       ),
     );
   }
